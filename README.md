@@ -81,7 +81,7 @@ tracks Sales, Profit, Profit Margin, Order Count, and Average Order Value (AOV).
 
 **Purpose:** Compare geographic and customer-industry performance beyond Sales alone.
 
-![Market Performance](visuals/images/page-2-market-performance.jpg)
+![Market Performance](visuals/page-2-market-performance.JPG)
 
 - **Geographic Sales Concentration:** A treemap shows where Sales are concentrated across Countries. The accompanying Country Performance Detail table adds **Profit, Profit Margin, Order Count, and AOV**, allowing high-Sales markets to be checked for broader commercial health.
 
@@ -102,7 +102,7 @@ tracks Sales, Profit, Profit Margin, Order Count, and Average Order Value (AOV).
 
 **Purpose:** Assess customer concentration, profitability exposure, and portfolio quality.
 
-![Customer Analytics](visuals/images/page-3-customer-analytics.jpg)
+![Customer Analytics](visuals/page-3-customer-analytics.JPG)
 
 - **Customer Concentration Risk:** evaluates dependence on large customers using: Top 10 Customer Sales Share, Customers to 80% Sales, Customer Sales Distribution by quintile
 
