@@ -60,11 +60,11 @@ Core fields used in the analysis include **Order Date, Region, Country, Customer
 
 ## Dashboard Story
 
-### 1. Sales Overview
+### PAGE 1. Sales Overview
 
 **Purpose:** Establish the overall financial picture and identify the main drivers of performance.
 
-![Sales Overview](visuals/images/page-1-sales-overview.jpg)
+![Sales Overview](visuals/page-1-sales-overview.JPG)
 
 - **Financial Health:** 
 tracks Sales, Profit, Profit Margin, Order Count, and Average Order Value (AOV). KPI cards compare the selected period with the same period in the prior year so that growth in commercial scale can be assessed alongside profitability.
@@ -77,7 +77,7 @@ tracks Sales, Profit, Profit Margin, Order Count, and Average Order Value (AOV).
 
 ---
 
-### 2. Market Performance
+### PAGE 2. Market Performance
 
 **Purpose:** Compare geographic and customer-industry performance beyond Sales alone.
 
@@ -98,7 +98,7 @@ tracks Sales, Profit, Profit Margin, Order Count, and Average Order Value (AOV).
 
 ---
 
-### 3. Customer Analytics
+### PAGE 3. Customer Analytics
 
 **Purpose:** Assess customer concentration, profitability exposure, and portfolio quality.
 
