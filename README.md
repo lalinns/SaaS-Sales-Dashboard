@@ -1,8 +1,16 @@
 # SaaS Sales Performance Dashboard
 
-From business performance to account-level risk — a Power BI dashboard for diagnosing growth drivers, market quality, and customer portfolio health.
+An end-to-end Power BI analytics project that transforms a flat SaaS sales dataset into a validated star-schema semantic model and an interactive three-page dashboard.
+
+Built with Power Query, DAX, Field Parameters, and controlled visual interactions to analyze performance drivers, market quality, and customer portfolio health.
 
 > **Live dashboard:** [View the interactive Power BI report](https://app.powerbi.com/view?r=eyJrIjoiNGI3MTlkZWItNjE1OS00MGYyLWFlOWUtYWQwMDZjOGU0NWZhIiwidCI6IjU3Mzk3N2E3LTk3NTEtNGMwOS1hZTc3LTg0NzI3MGM1Mjc1OCIsImMiOjEwfQ%3D%3D)
+
+> **Data Preparation and Modeling:** See `docs/data-preparation-and-modeling.md`
+
+> **Star-Schema Model:** See `visuals/star-schema-model.PNG`
+
+> **Measure Documentation:** See `docs/measure-documentation.xlsx`
 
 ## Project Overview
 
@@ -19,8 +27,8 @@ The final report contains three pages: **Sales Overview**, **Market Performance*
 ```text
 SALES OVERVIEW
 ├── Financial Health
-├── Profit Performance Drivers
-├── Growth Drivers
+├── Profit Growth Drivers
+├── Sales Growth Drivers
 └── Top Contributors
 
 MARKET PERFORMANCE
@@ -69,12 +77,18 @@ Core fields used in the analysis include **Order Date, Region, Country, Customer
 - **Financial Health:** 
 tracks Sales, Profit, Profit Margin, Order Count, and Average Order Value (AOV). KPI cards compare the selected period with the same period in the prior year so that growth in commercial scale can be assessed alongside profitability.
 
-- **Profit Performance Drivers:** Profit performance is assessed through Sales and Profit Margin to distinguish improvement supported by greater business scale from improvement driven by stronger profitability, and to identify periods where Sales growth may be offset by Margin compression.
+- **Profit Growth Drivers:** Profit growth is examined through Sales and Profit Margin to distinguish growth supported by higher Sales from growth supported by stronger profitability, and to identify periods where Sales growth may be offset by Margin compression.
 
-- **Growth Drivers:** Sales growth is decomposed through **Order Count** and **Average Order Value** to distinguish growth driven by higher order volume from growth driven by higher value per order.
+- **Sales Growth Drivers:** Sales growth is examined through Order Count and Average Order Value to distinguish growth supported by higher order volume from growth supported by higher value per order.
 
 - **Top Contributors:** Dynamic Top 5 views identify the **Countries** and **Customers** contributing the most **Sales or Profit** in the selected business context.
 
+> **Dual-axis interpretation note:** Both Profit Growth Drivers and Sales Growth Drivers use charts with independently
+> auto-scaled secondary Y-axes to preserve the readability of each metric over time.
+> Because the two series use different units and scales, their visual
+> alignment may suggest a stronger relationship than actually exists.
+> Similar movements should therefore not be interpreted as evidence of
+> correlation or causation without further analysis.
 ---
 
 ### PAGE 2. Market Performance
@@ -83,7 +97,7 @@ tracks Sales, Profit, Profit Margin, Order Count, and Average Order Value (AOV).
 
 ![Market Performance](visuals/page-2-market-performance.JPG)
 
-- **Geographic Sales Concentration:** A treemap shows where Sales are concentrated across Countries. The accompanying Country Performance Detail table adds **Profit, Profit Margin, Order Count, and AOV**, allowing high-Sales markets to be checked for broader commercial health.
+- **Geographic Sales Concentration:** A treemap shows where Sales are concentrated across Countries.
 
 - **Customer Industry Profiling:** Customer industries are categorized based on order volume and profit margin, with sales represented by bubble size. The relative profiles are interpreted as:
 
