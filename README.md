@@ -6,11 +6,11 @@ Built with Power Query, DAX, Field Parameters, and controlled visual interaction
 
 > **Live dashboard:** [View the interactive Power BI report](https://app.powerbi.com/view?r=eyJrIjoiNGI3MTlkZWItNjE1OS00MGYyLWFlOWUtYWQwMDZjOGU0NWZhIiwidCI6IjU3Mzk3N2E3LTk3NTEtNGMwOS1hZTc3LTg0NzI3MGM1Mjc1OCIsImMiOjEwfQ%3D%3D)
 
-> **Data Preparation and Modeling:** See `docs/data-preparation-and-modeling.md`
+> **Data Preparation and Modeling:** See [`docs/data-preparation-and-modeling.md`](`docs/data-preparation-and-modeling.md`)
 
-> **Star-Schema Model:** See `visuals/star-schema-model.PNG`
+> **Star-Schema Model:** See [`visuals/star-schema-model.PNG`](`visuals/star-schema-model.PNG`)
 
-> **Measure Documentation:** See `docs/measure-documentation.xlsx`
+> **Measure Documentation:** See [`docs/measure-documentation.xlsx`](`docs/measure-documentation.xlsx`)
 
 ## Project Overview
 
@@ -21,6 +21,48 @@ This project analyzes a SaaS sales dataset to answer three connected business qu
 3. How concentrated and healthy is the customer portfolio?
 
 The final report contains three pages: **Sales Overview**, **Market Performance**, and **Customer Analytics**.
+
+## Dashboard Purpose & Users
+
+**Primary users:** Commercial manager or sales manager who need to review overall performance, market quality, and customer portfolio health.
+
+**Decision support:** The dashboard helps users:
+- understand whether Sales growth is driven by more Orders or higher AOV;
+- assess whether Profit growth is supported by Sales growth or stronger Profit Margin;
+- identify strong and weak Countries / Customer Industries for further investigation;
+- monitor customer concentration and loss-making customer exposure;
+- identify Customers or markets that may require follow-up.
+
+**Data usage:** The dashboard supports analysis over a user-selected time window and reflects the latest source data available at the most recent dataset refresh.
+
+## Core KPI Definitions
+
+| KPI | Definition |
+|---|---|
+| **Sales** | Sum of source-defined Sales in the selected context |
+| **Profit** | Sum of source-defined Profit |
+| **Profit Margin** | Profit / Sales |
+| **Order Count** | Distinct count of Order ID |
+| **Average Order Value** | Sales / Order Count |
+
+> Detailed definitions, analytical metrics, assumptions, and limitations are documented in [`docs/metric-definitions.md`](docs/metric-definitions.md).
+
+
+## Dataset
+
+The source dataset contains:
+
+- **9,994** sales transaction lines
+- **5,009** unique orders
+- **99** customers
+- **48** countries
+- **10** customer industries
+- Order dates from **2020 to 2023**
+
+One row represents one sales transaction line within an order.
+
+> **Data source:** [Original public dataset link](https://www.kaggle.com/datasets/nnthanh101/aws-saas-sales?select=SaaS-Sales.csv).  
+> **Data dictionary:** See [`docs/data-dictionary.md`](`docs/data-dictionary.md`)
 
 ## Report Structure
 
@@ -42,29 +84,6 @@ CUSTOMER ANALYTICS
 ├── Customer Portfolio Profiling
 └── Detailed Customer Performance Comparison
 ```
-
-## Tools
-- **Power BI Desktop** — data modeling, DAX, report development, and visualization
-- **Power Query** — data preparation
-- **GitHub** — portfolio documentation and project versioning
-
-## Dataset
-
-The source dataset contains:
-
-- **9,994** sales transaction lines
-- **5,009** unique orders
-- **99** customers
-- **48** countries
-- **10** customer industries
-- Order dates from **2020 to 2023**
-
-One row represents one sales transaction line within an order.
-
-Core fields used in the analysis include **Order Date, Region, Country, Customer, Customer Industry, Sales, Profit, Quantity, Discount, Order ID, and License**.
-
-> **Data source:** [Original public dataset link](https://www.kaggle.com/datasets/nnthanh101/aws-saas-sales?select=SaaS-Sales.csv).  
-> **Data dictionary:** See `docs/data-dictionary.md`.
 
 ## Dashboard Story
 
@@ -134,35 +153,34 @@ tracks Sales, Profit, Profit Margin, Order Count, and Average Order Value (AOV).
 - **Detailed Customer Comparison**: The Customer Performance Detail table provides exact **Sales, Profit, Profit Margin, Order Count, and AOV** for account-level comparison and investigation.
 
 ## Selected Analytical Methods
-This section documents selected analytical methods whose underlying calculation or interpretation is not immediately obvious from the dashboard. It focuses only on methods that benefit from additional explanation rather than providing an exhaustive list of report measures.
+This section highlights analytical methods whose logic or interpretation
+benefits from additional explanation. Metric definitions are documented
+separately in `docs/metric-definitions.md`.
 
-### 1. Industry & Customer Performance Profiles visuals — Current-Context Peer Benchmarking (Pages 2–3)
-The scatter-plot quadrants are **relative profiles**, not fixed business classifications. Median Order Count and Median Profit Margin are recalculated within the current peer context, so a profile describes an entity relative to the currently selected population.
+### 1. Current-Context Peer Benchmarking
 
-### 2. Top 10 Customer Sales Share card - Customer Concentration Measure (Page 3)
-Calculate the percentage of total revenue contributed by top 10 customers
+Used in the Industry and Customer Performance Profiles.
 
-### 3. Customers to 80% Sales visual - Cumulative Sales Threshold method (Page 3)
-Customers are ranked by Sales from highest to lowest and accumulated until their combined Sales reach at least 80% of Total Sales. The measure returns the minimum number of customers required to reach that threshold.
+Median Order Count and Median Profit Margin are recalculated within the
+current filter context. The resulting quadrants therefore describe relative
+performance versus the currently selected peer group rather than fixed
+business classifications.
 
-### 4. Loss-Making Customer Share card - Profitability Exposure Measure (Page 3)
-Calculate the percentage of customers whose total Profit is below zero in the current analysis context.
+### 2. Cumulative Sales Threshold
 
-### 5. Customer Sales Distribution visual - Dynamic Customer Quintile Segmentation method (Page 3)
-Customers are ranked by Sales within the current filter context and divided into five similarly sized groups to measure how much of Total Sales each 20% customer group contributes.
+Used for Customers to 80% Sales.
 
-Conceptually:
+Customers are ranked by Sales from highest to lowest and accumulated until
+their combined Sales reach at least 80% of Total Sales. The result shows the
+minimum number of customers required to reach that threshold.
 
-```text
-Current filter context
-        ↓
-Calculate Sales by customer
-        ↓
-Rank customers by Sales, highest to lowest
-        ↓
-Split customers into five groups
-        ↓
-Sum Sales within each group
-        ↓
-Sales Share = Group Sales / Total Sales
-```
+### 3. Dynamic Customer Quintile Segmentation
+
+Customers are ranked by Sales within the current filter context and divided
+into five similarly sized groups. Sales Share is then calculated for each
+group to show how Sales are distributed across the customer base.
+
+## Tools
+- **Power BI Desktop** — data modeling, DAX, report development, and visualization
+- **Power Query** — data preparation
+- **GitHub** — portfolio documentation and project versioning
