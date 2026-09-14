@@ -10,7 +10,6 @@ Built with Power Query, DAX, Field Parameters, and controlled visual interaction
 
 > **Star-Schema Model:** See [`visuals/star-schema-model.PNG`](`visuals/star-schema-model.PNG`)
 
-> **Measure Documentation:** See [`docs/measure-documentation.xlsx`](`docs/measure-documentation.xlsx`)
 
 ## Project Overview
 
